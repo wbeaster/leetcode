@@ -25,11 +25,39 @@ For the purpose of this problem, assume that your function returns 0 when the re
  * @param {number} x
  * @return {number}
  */
-var reverse = function(x) {
-  
+var reverse = function(x) 
+{
+    if (x <= 9 && x > -9 ) return x;
+
+    let positive = true;
+    if (x < 0)
+    {
+        positive = false;
+        x *= -1;
+    }
+
+    let newNum = 0;
+    let place = 10; //this will increment * 10 every round
+
+    while(x >= 10)
+    {
+        //pop
+        let rightDigit = x % 10;
+        x /= 10;
+        
+        //push
+        newNum += rightDigit * place; //***make it so this drop the decimal part */
+
+        place *= 10;
+    }
+
+    if (!positive) {newNum *= -1};
+    return newNum;
     
 };
 
-let myArgs = process.argv;
+let myArgs = process.argv.slice(2);
+
+console.log(myArgs);
 
 console.log(reverse(parseInt(myArgs)));
