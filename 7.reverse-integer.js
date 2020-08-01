@@ -17,7 +17,7 @@ Input: 120
 Output: 21
 
 Note:
-Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. 
+Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−2^31,  2^31 − 1]. 
 For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
  */
 
@@ -27,7 +27,10 @@ For the purpose of this problem, assume that your function returns 0 when the re
  */
 var reverse = function(x) 
 {
-    if (x <= 9 && x > -9 ) return x;
+    const MAXINT = 2**31 - 1;
+    const MININT = -(2**31);
+
+    if (x <= 9 && x >= -9 ) return x;
 
     let positive = true;
     if (x < 0)
@@ -37,7 +40,7 @@ var reverse = function(x)
     }
 
     let newNum = 0;
-    let place = 10; //this will increment * 10 every round
+    let rightDigit = 0; //so it persists outsdie the while loop
 
     while(x >= 10)
     {
@@ -46,13 +49,16 @@ var reverse = function(x)
         x /= 10;
         
         //push
-        newNum += rightDigit * place; //***make it so this drop the decimal part */
-
-        place *= 10;
+        newNum *= 10;
+        newNum += parseInt(rightDigit);
     }
 
+    newNum *= 10;
+    newNum += x;
+
     if (!positive) {newNum *= -1};
-    return newNum;
+    if (newNum > MAXINT || newNum < MININT) return 0;
+    return parseInt(newNum);
     
 };
 
