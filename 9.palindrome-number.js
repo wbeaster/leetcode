@@ -28,11 +28,33 @@ Coud you solve it without converting the integer to a string?
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    
+    if (x < 0) return false;
+    if (x <= 9) return true;
+    if (x % 10 == 0) return false;
+
+    let originalNum = x;
+    let newNum = 0;
+    let rightDigit = 0; //so it persists outsdie the while loop
+
+    while(x >= 10)
+    {
+        //pop
+        let rightDigit = x % 10;
+        x /= 10;
+        
+        //push
+        newNum *= 10;
+        newNum += parseInt(rightDigit);
+    }
+
+    newNum *= 10;
+    newNum += x;
+
+    return parseInt(newNum) == originalNum;
 };
 
 let myArgs = process.argv.slice(2);
 
 console.log(myArgs);
 
-console.log(reverse(parseInt(myArgs)));
+console.log(isPalindrome(parseInt(myArgs)));
