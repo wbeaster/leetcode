@@ -34,13 +34,12 @@ var isPalindrome = function(x) {
 
     let originalNum = BigInt(x);
     let newNum = BigInt(0);
-    let rightDigit = BigInt(0); //so it persists outsdie the while loop
+    let rightDigit = BigInt(0); //so it persists outside the while loop
 
     while(BigInt(x) >= 10n)
     {
         //pop
         let rightDigit = BigInt(x) % 10n;
-        //if (parseInt(x % 10) < 1) rightDigit = 0; //this is because of how JS deals with scientific notation, 0.0000009999999747378752 -> 9.999999974752427e-7 (as a loose example)
         x /= 10n;
         
         //push
