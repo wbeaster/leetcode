@@ -61,7 +61,7 @@ var romanToInt = function(s)
 
     if (s.length == 1)
     {
-        switch(s[0])
+        switch(s[s.length-1])
         {
             case 'I':
                 answer = 1;
