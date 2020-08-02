@@ -27,7 +27,9 @@ Coud you solve it without converting the integer to a string?
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function(x) {
+var isPalindrome = function(xx) {
+    let x = BigInt(xx); //forces x to be a BigInt. I did it this way so I didn't have to change a lot of code below
+    
     if (BigInt(x) < BigInt(0)) return false;
     if (BigInt(x) <= BigInt(9)) return true;
     if (BigInt(x) % 10n == 0n) return false;
