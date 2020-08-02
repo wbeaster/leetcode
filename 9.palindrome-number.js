@@ -28,33 +28,34 @@ Coud you solve it without converting the integer to a string?
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    if (x < 0) return false;
-    if (x <= 9) return true;
-    if (x % 10 == 0) return false;
+    if (BigInt(x) < BigInt(0)) return false;
+    if (BigInt(x) <= BigInt(9)) return true;
+    if (BigInt(x) % 10n == 0n) return false;
 
-    let originalNum = x;
-    let newNum = 0;
-    let rightDigit = 0; //so it persists outsdie the while loop
+    let originalNum = BigInt(x);
+    let newNum = BigInt(0);
+    let rightDigit = BigInt(0); //so it persists outsdie the while loop
 
-    while(x >= 10)
+    while(BigInt(x) >= 10n)
     {
         //pop
-        let rightDigit = x % 10;
-        x /= 10;
+        let rightDigit = BigInt(x) % 10n;
+        //if (parseInt(x % 10) < 1) rightDigit = 0; //this is because of how JS deals with scientific notation, 0.0000009999999747378752 -> 9.999999974752427e-7 (as a loose example)
+        x /= 10n;
         
         //push
-        newNum *= 10;
-        newNum += parseInt(rightDigit);
+        newNum *= 10n;
+        newNum += BigInt(rightDigit);
     }
 
-    newNum *= 10;
-    newNum += x;
+    newNum *= 10n;
+    newNum += BigInt(x);
 
-    return parseInt(newNum) == originalNum;
+    return BigInt(newNum) == BigInt(originalNum);
 };
 
 let myArgs = process.argv.slice(2);
 
 console.log(myArgs);
 
-console.log(isPalindrome(parseInt(myArgs)));
+console.log(isPalindrome(BigInt(myArgs)));
