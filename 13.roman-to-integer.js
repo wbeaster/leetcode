@@ -18,7 +18,7 @@ Roman numerals are usually written largest to smallest from left to right. Howev
     X can be placed before L (50) and C (100) to make 40 and 90. 
     C can be placed before D (500) and M (1000) to make 400 and 900.
 
-Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999 (I to MMMCMXCIX).
 
 Example 1:
 
@@ -52,7 +52,46 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
+var romanToInt = function(s) 
+{
+    //analyze from right to left, builds the numbers as strings (this is JS after all)
+    let index = s.length;
+    let answer = 0;
+    let place = 1;
+
+    if (s.length == 1)
+    {
+        switch(s[0])
+        {
+            case 'I':
+                answer = 1;
+                break;
+            case 'V':
+                answer = 5;
+                break;
+            case 'X':
+                answer = 10;
+                break;
+            case 'L':
+                answer = 50;
+                break;
+            case 'C':
+                answer = 100;
+                break;
+            case 'D':
+                answer = 500;
+                break;
+            case 'M':
+                answer = 1000;
+                break;
+        }
+    }
+    else if (s.length == 2)
+    {
+        
+    }
+
+    return answer;
     
 };
 
@@ -60,4 +99,4 @@ let myArgs = process.argv.slice(2);
 
 console.log(myArgs);
 
-console.log(isPalindrome(romanToInt(myArgs)));
+console.log(romanToInt(myArgs));
