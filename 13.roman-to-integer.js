@@ -52,44 +52,92 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) 
-{
-    //analyze from right to left, builds the numbers as strings (this is JS after all)
-    let index = s.length;
-    let answer = 0;
-    let place = 1;
 
-    if (s.length == 1)
+var romToInt = function(rom, int)
+{
+    //take care of the romans with a length of one first
+    //this also is the recursive function's terminating case
+    if (rom.length == 1)
     {
-        switch(s[s.length-1])
+        switch(rom[0])
         {
             case 'I':
-                answer = 1;
-                break;
+                return int + 1;
             case 'V':
-                answer = 5;
-                break;
+                return int +  5;
             case 'X':
-                answer = 10;
-                break;
+                return int +  10;
             case 'L':
-                answer = 50;
-                break;
+                return int +  50;
             case 'C':
-                answer = 100;
-                break;
+                return int +  100;
             case 'D':
-                answer = 500;
-                break;
+                return int +  500;
             case 'M':
-                answer = 1000;
-                break;
+                return int +  1000;
         }
     }
-    else if (s.length == 2)
+
+    //now we deal with romans with a length greater than one
+    //having a length greater than one means that we can safely look one spot to the right of the char we are switch-ing
+    switch(rom[0])
     {
-        
+        case 'M':
+            return romToInt(rom.slice(1), int+1000);
+            break;
+        case 'D':
+            return romToInt(rom.slice(1), int+500);
+            break;
+        case 'C':
+            switch(rom[1])
+            {
+                case 'D':
+                    return romToInt(rom.slice(1), int-100);
+                    break;
+                case 'M':
+                    return romToInt(rom.slice(1), int-100);
+                    break;
+                default:
+                    return romToInt(rom.slice(1), int+100);
+            }
+        case 'L':
+            return romToInt(rom.slice(1), int+50);
+            break;
+        case 'X':
+            switch(rom[1])
+            {
+                case 'L':
+                    return romToInt(rom.slice(1), int-10);
+                    break;
+                case 'C':
+                    return romToInt(rom.slice(1), int-10);
+                    break;
+                default:
+                    return romToInt(rom.slice(1), int+10);
+            }
+        case 'V':
+            return romToInt(rom.slice(1), int+5);
+            break;
+        case 'I':
+            switch(rom[1])
+            {
+                case 'V':
+                    return romToInt(rom.slice(1), int-1);
+                    break;
+                case 'X':
+                    return romToInt(rom.slice(1), int-1);
+                    break;
+                default:
+                    return romToInt(rom.slice(1), int+1);
+            }
     }
+
+}
+
+
+ var romanToInt = function(s) 
+{
+    answer = romToInt(s, 0);
 
     return answer;
     
@@ -99,4 +147,4 @@ let myArgs = process.argv.slice(2);
 
 console.log(myArgs);
 
-console.log(romanToInt(myArgs));
+console.log(romanToInt(String(myArgs)));
