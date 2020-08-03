@@ -39,15 +39,26 @@ Output: true
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-
+var isValid = function(s) 
+{
+    //this is just a for loop that pops ({[ on. )}] pops things off. If there is no corresponding ({[ then it isn't a valid string
+    console.log("Handle if it's and empty string treating it as valid");
     
+    let stack = s[0];
+    let top = s[0];
+
+    for(let i = 1; i < s.length; i++)
+    {
+        onDeck = s[i]; //this will be they guy we check as ({[ and ]})
+    }
+    
+
 
 };
 
 let myArgs = process.argv.slice(2);
 
 console.log(myArgs);
-let a = isValid(myArgs)
+let a = isValid(String(myArgs));
 
 console.log(a);
