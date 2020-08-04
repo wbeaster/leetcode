@@ -39,21 +39,52 @@ Output: true
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) 
+var isValid = function(ss) 
 {
-    //this is just a for loop that pops ({[ on. )}] pops things off. If there is no corresponding ({[ then it isn't a valid string
-    console.log("Handle if it's and empty string treating it as valid");
+    let s = Array.from(ss);
+    if (s.length == 0) return true;
+    if (s.length % 2 == 1) return false; //if there is not an even number of chars then there is a missing opening or closing paren/bracket/brace
+    if (s[0] == ')' || s[0] == '}' || s[0] == ']') return false;
+
+    //returns the corresponding closing paren/bracket/brace for the given opener
+    var closerFor = function(opener)
+    {
+        switch (opener)
+        {
+            case '(':
+                return ')';
+                break;
+            case '{':
+                return '}';
+                break;
+            case '[':
+                return ']';
+                break;
+        }
+    }
     
-    let stack = s[0];
-    let top = s[0];
+    //this is just a for loop that pushes ({[ on and pops )}] off. If there is no corresponding ({[ for a )}] then it isn't a valid string
+    let stack = new String(s[0]);
+    
+    //let top = 0;
 
     for(let i = 1; i < s.length; i++)
     {
+        console.log(i);
         onDeck = s[i]; //this will be they guy we check as ({[ and ]})
+        if (onDeck == '(' || onDeck == '{' || onDeck == '[')
+        {
+            stack = stack + onDeck; //push, I did my own because I didn't know about Array.from() when I started...what could go wrong?
+        }
+        else if (onDeck == closerFor(stack[stack.length-1])) 
+        {
+            console.log('pop');
+            stack  = stack.slice(0, -1); //pop
+        }
+        else
+            return false;
     }
-    
-
-
+    return true;
 };
 
 let myArgs = process.argv.slice(2);
