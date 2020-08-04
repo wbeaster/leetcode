@@ -41,7 +41,6 @@ Output: true
  */
 var isValid = function(s) 
 {
-    //let s = new String(ss);
     if (s.length == 0) return true;
     if (s.length % 2 == 1) return false; //if there is not an even number of chars then there is a missing opening or closing paren/bracket/brace
     if (s[0] == ')' || s[0] == '}' || s[0] == ']') return false;
@@ -70,7 +69,6 @@ var isValid = function(s)
 
     for(let i = 1; i < s.length; i++)
     {
-        //console.log(i);
         onDeck = s[i]; //this will be they guy we check as ({[ and ]})
         if (onDeck == '(' || onDeck == '{' || onDeck == '[')
         {
@@ -78,7 +76,6 @@ var isValid = function(s)
         }
         else if (onDeck == closerFor(stack[stack.length-1])) 
         {
-            //console.log('pop');
             stack  = stack.slice(0, -1); //pop
         }
         else
