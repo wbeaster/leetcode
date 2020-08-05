@@ -49,8 +49,7 @@ for (int i = 0; i < len; i++) {
 var removeElement = function(nums, val) 
 {
     if (nums.length == 0) return 0;
-    if (nums.length == 1) return 1;
-
+    
     let currentIndex = 0
         
     do
@@ -65,8 +64,8 @@ var removeElement = function(nums, val)
     return nums.length;    
 };
 
-let nums = [0,1,2,2,3,0,4,2];
-let val = 2;
+let nums = [1, 1, 1, 2, 1];
+let val = 1;
 
 console.log(`${nums} with ${val}`);
 
