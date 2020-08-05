@@ -43,12 +43,53 @@ for (int i = 0; i < len; i++) {
  */
 var removeDuplicates = function(nums) 
 {
+    if (nums.length == 0) return 0;
+    if (nums.length == 1) return 1;
+
+    //check if everything is unique and then return length, if there's a built-in function.
+    let count = 1;
+    let currentIndex = 0
+    let nextIndex = currentIndex + 1;
+    let endIndex = nums.length-1;
     
+    //we know there are at least two elements in the array, so looking one ahead can be done safely
+    do
+    {
+        let currentElement = nums[currentIndex];
+        let nextElement = nums[nextIndex];
+        
+        //if the next one is the same as the current one, then move the next one to the end of the array
+        //else, move the pointers forward one and increase the count by one 
+        if (nextElement == currentElement)
+        {
+            let t = nums.splice(nextIndex, 1);
+            nums.push(Number(t));
+            endIndex--;
+        }
+        else
+        {
+            currentIndex++;
+            nextIndex++;
+            count++;
+        }
+    }
+    while(nextIndex <= endIndex);
+        
+    return count;    
 };
 
-let myArgs = [1, 1, 2, 3, 3, 4, 5];
+//Test cases:
+//empty array
+//array of all same numbers
+//array of one of each number
 
-myArgs.forEach(element => {console.log(element)});
+let nums = [0,0,1,1,1,2,2,3,3,4,4];
 
-console.log(removeDuplicates(myArgs));
+console.log(nums);
+
+let len = removeDuplicates(nums);
+
+console.log(nums);
+
+console.log(len);
 
