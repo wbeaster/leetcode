@@ -33,10 +33,28 @@ Constraints:
  */
 var strStr = function(haystack, needle) 
 {
+    if (needle.length > haystack.length) return -1;
+    if (needle == "") return 0;
+    if (needle == haystack) return 0;
     
+    let answer = -1;
+    
+    let windowSize = needle.length;
+    let i = -1;
+
+    do
+    {
+        i++;
+        console.log(i);
+        if (needle == haystack.substr(i, windowSize)) 
+            answer = i;
+    }
+    while ((i + windowSize < (haystack.length)) && answer == -1)
+
+    return answer;
 };
 
-let haystack = 'hello';
+let haystack = 'looo';
 let needle = 'll';
 
 console.log(`Looking for ${needle} in ${haystack}`);
