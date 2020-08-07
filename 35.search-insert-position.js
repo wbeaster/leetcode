@@ -33,6 +33,9 @@ var searchInsert = function(nums, target)
 {
     if (target < nums[0])
         return 0;
+
+    if (nums[0] == target)
+        return 0;
     
     if (nums.length == 1)
     {
@@ -55,8 +58,8 @@ var searchInsert = function(nums, target)
     return nums.length;
 };
 
-let nums = [1,3,5,6];
-let target = 0;
+let nums = [1,3];
+let target = 1;
 
 let answer = searchInsert(nums, target);
 
