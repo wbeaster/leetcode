@@ -35,16 +35,35 @@ var lengthOfLastWord = function(s)
     
     let lastSpaceIndex = s.lastIndexOf(" ");
 
-    if (lastSpaceIndex == -1) return 0;
+    if (lastSpaceIndex == -1) return s.length;
     
     return (s.length-1) - lastSpaceIndex;
     
 };
 
 //TEST MORE. YOU ARE TOO TIRED TO SUBMIT THIS RIGHT NOW. REMEMBER, GOAL IS THE HIGHEST NUMBER OF CORRECT SUBMISSIONS
-//let string = "Hello World";
-let string = "World";
+let string1 = "Hello World";
+let string2 = "World";
+let string3 = "Hello World ";
+let string4 = "World  ";
+let string5 = "Hello World   ";
+let string6 = " World";
+let string7 = " Hello World";
+let string8 = "   World";
+let string9 = "Just a string"
+let string10 = "";
+let string11 = " ";
+let string12 = "   ";
+let string13 = "     ";
+let string14 = "This is a completely random sentence";
+let string15 = "   a   ";
+let string16 = "    a ab    ";
+let string17 = "   World";
+let string18 = "a";
+let string19 = " a ";
 
+let string = string19;
 let answer = lengthOfLastWord(string);
 
+console.log(`${string}`)
 console.log(answer);
