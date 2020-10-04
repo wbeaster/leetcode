@@ -29,8 +29,11 @@ Constraints:
  */
 var addBinary = function(a, b) 
 {
-    let aBin = parseInt(a, 2);
-    let bBin = parseInt(b, 2);
+    //let aBin = parseInt(a, 2);
+    //let bBin = parseInt(b, 2);
+
+    let aBin = BigInt(a);
+    let bBin = BigInt(b);
 
     let cBin = aBin + bBin;
 
